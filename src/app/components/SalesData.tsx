@@ -22,7 +22,7 @@ const SalesData: React.FC = () => {
     setLoading(true); // Set loading to true when fetching starts
     setError(null); // Clear any previous errors
     try {
-      const url = 'YOUR_GOOGLE_SHEETS_PUBLISHED_URL';
+      const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub?gid=0&single=true&output=csv';
       const response = await axios.get(url);
       const parsedData = Papa.parse(response.data, { header: true });
       setSalesData(parsedData.data as Sale[]);
