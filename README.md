@@ -1,6 +1,6 @@
 # Sales Dashboard with Next.js and Google Sheets
 
-This project is a **Sales Dashboard** built with **Next.js** and **Tailwind CSS**. It fetches data from a **Google Sheet** and displays it as a visual leaderboard using bar charts. The dashboard is designed to track metrics like `Credit`, `Submissions`, and `Fundings` for salespeople.
+This project is a **Sales Dashboard** built with **Next.js** and **Tailwind CSS**. It fetches data from a **Google Sheet** and displays it as a visual leaderboard using bar charts. The dashboard is designed to track metrics like `Applications`, `Signatures`, and `Folders` for salespeople.
 
 ## Features
 - **Dynamic Data Fetching**: Fetches data from a Google Sheet in real-time.
@@ -34,7 +34,7 @@ npm install
 1. **Create a Google Sheet**:
    - Create a new Google Sheet and add the following column headers (or use your own, just make sure to adjust in the SalesData.tsx file):
      ```
-     Salesperson | Credit | Submissions | Fundings
+     Salesperson | Applications | Signatures | Folders
      ```
    - Populate the sheet with your sales data.
 
@@ -74,12 +74,12 @@ sales-dashboard/
 ## Google Sheets Column Headers
 Your Google Sheet must have the following column headers for the dashboard to work correctly:
 - **Salesperson**: The name of the salesperson.
-- **Credit**: The credit amount (e.g., `$5000`).
-- **Submissions**: The number of submissions (e.g., `10`).
-- **Fundings**: The funding amount (e.g., `$2000`).
+- **Applications**: The Applications amount (e.g., `$5000`).
+- **Signatures**: The number of Signatures (e.g., `10`).
+- **Folders**: The funding amount (e.g., `$2000`).
 
 Example:
-| Salesperson | Credit | Submissions | Fundings |
+| Salesperson | Applications | Signatures | Folders |
 |-------------|--------|-------------|----------|
 | John Doe    | $5000  | 10          | $2000    |
 | Jane Smith  | $3000  | 8           | $1500    |
