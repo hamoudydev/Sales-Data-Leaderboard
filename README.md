@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sales Dashboard with Next.js and Google Sheets
+
+This project is a **Sales Dashboard** built with **Next.js** and **Tailwind CSS**. It fetches data from a **Google Sheet** and displays it as a visual leaderboard using bar charts. The dashboard is designed to track metrics like `Credit`, `Submissions`, and `Fundings` for salespeople.
+
+## Features
+- **Dynamic Data Fetching**: Fetches data from a Google Sheet in real-time.
+- **Visual Leaderboard**: Displays data as bar charts using **Chart.js**.
+- **Refresh Button**: Allows manual refreshing of data.
+- **Responsive Design**: Built with **Tailwind CSS** for a clean and responsive UI.
+
+---
+
+## Prerequisites
+Before running the project, ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the Repository
+Clone this repository to your local machine:
+```bash
+git clone https://github.com/your-username/sales-dashboard.git
+cd sales-dashboard
+```
+### 2. Install Dependencies
+Install the required dependencies:
+```bash
+npm install
+```
+### 3. Set Up Google Sheets
+1. **Create a Google Sheet**:
+   - Create a new Google Sheet and add the following column headers (or use your own, just make sure to adjust in the SalesData.tsx file):
+     ```
+     Salesperson | Credit | Submissions | Fundings
+     ```
+   - Populate the sheet with your sales data.
 
+2. **Publish the Sheet**:
+   - Go to `File > Share > Publish to Web`.
+   - Select the sheet and choose `Comma-separated values (.csv)` as the format.
+   - Click `Publish` and copy the URL.
+
+3. **Update the URL in the Code**:
+   - Open the `SalesData.tsx` file and replace the `url` variable with your published Google Sheets URL:
+     ```tsx
+     const url = 'YOUR_GOOGLE_SHEETS_PUBLISHED_URL';
+     ```
+
+     ### 4. Run the Project
+Start the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+## Project Structure
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+sales-dashboard/
+├── src/
+│   ├── components/
+│   │   ├── BarChart.tsx       # Bar chart component
+│   │   └── SalesData.tsx      # Main dashboard component
+│   ├── app/
+│   │   └── page.tsx           # Main page (Next.js App Router)
+│   └── styles/
+│       └── globals.css        # Global styles
+├── public/                    # Static assets
+├── tailwind.config.js         # Tailwind CSS configuration
+├── tsconfig.json              # TypeScript configuration
+├── package.json               # Project dependencies
+└── README.md                  # This file
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Google Sheets Column Headers
+Your Google Sheet must have the following column headers for the dashboard to work correctly:
+- **Salesperson**: The name of the salesperson.
+- **Credit**: The credit amount (e.g., `$5000`).
+- **Submissions**: The number of submissions (e.g., `10`).
+- **Fundings**: The funding amount (e.g., `$2000`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Example:
+| Salesperson | Credit | Submissions | Fundings |
+|-------------|--------|-------------|----------|
+| John Doe    | $5000  | 10          | $2000    |
+| Jane Smith  | $3000  | 8           | $1500    |
 
-## Learn More
+## Technologies Used
+- **Next.js**: React framework for server-side rendering and static site generation.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Chart.js**: JavaScript library for creating charts.
+- **Google Sheets**: Used as a data source for the dashboard.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
+Contributions are welcome! If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Acknowledgments
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Chart.js Documentation](https://www.chartjs.org/docs/)
