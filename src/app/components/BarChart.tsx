@@ -36,7 +36,7 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
         position: 'top' as const,
       },
       title: {
-        display: true,
+        display: false,
         text: 'Sales Leaderboard',
       },
     },
