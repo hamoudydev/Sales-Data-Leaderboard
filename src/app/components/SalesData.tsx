@@ -17,25 +17,12 @@ const SalesData: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [period, setPeriod] = useState<'daily' | 'weekly' | 'monthly'>('daily'); // State for Period
-  const [team, setTeam] = useState<'all' | 'dreamChasers' | 'dreamVille'>('all'); // State for Team
 
-  // Mapping for gid values based on team and period
+  // Mapping for gid values based on period
   const gidMapping = {
-    all: {
-      daily: '0',
-      weekly: '2040258721',
-      monthly: '1972425694',
-    },
-    dreamChasers: {
-      daily: '928826173',
-      weekly: '1501607893', // Replace with the correct gid for Dream Chasers weekly
-      monthly: '1817368453', // Replace with the correct gid for Dream Chasers monthly
-    },
-    dreamVille: {
-      daily: '1408961369',
-      weekly: '1443693332', // Replace with the correct gid for Dream Ville weekly
-      monthly: '1045432359', // Replace with the correct gid for Dream Ville monthly
-    },
+    daily: '0',
+    weekly: '2040258721',
+    monthly: '1972425694',
   };
 
   // Function to fetch data
@@ -43,24 +30,10 @@ const SalesData: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      // Determine the base URL based on the selected team
-      let baseUrl = '';
-      switch (team) {
-        case 'all':
-          baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub';
-          break;
-          case 'dreamChasers':
-            baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub';
-            break;
-        case 'dreamVille':
-          baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub';
-          break;
-        default:
-          baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub';
-      }
+      const baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub';
 
-      // Determine the gid based on the selected team and period
-      const gid = gidMapping[team][period];
+      // Determine the gid based on the selected period
+      const gid = gidMapping[period];
 
       // Construct the URL
       const url = `${baseUrl}?gid=${gid}&single=true&output=csv`;
@@ -76,10 +49,10 @@ const SalesData: React.FC = () => {
     }
   };
 
-  // Fetch data when period or team changes
+  // Fetch data when period changes
   useEffect(() => {
     fetchData();
-  }, [period, team]);
+  }, [period]);
 
   // Function to find leaders for a given category
   const findLeaders = (category: keyof Sale) => {
@@ -165,24 +138,8 @@ const SalesData: React.FC = () => {
         </div>
       </div>
 
-      {/* Team and Period Selectors */}
+      {/* Period Selector */}
       <div className="flex items-center gap-4 mb-4">
-        {/* Team Selector */}
-        <div>
-          <label htmlFor="team" className="mr-2 text-black">Team:</label>
-          <select
-            id="team"
-            value={team}
-            onChange={(e) => setTeam(e.target.value as 'all' | 'dreamVille' | 'dreamChasers')}
-            className="px-4 py-2 bg-white border border-gray-300 rounded text-black"
-          >
-            <option value="all">All Staff</option>
-            <option value="dreamChasers">Dream Chasers</option>
-            <option value="dreamVille">Dream Ville</option>
-          </select>
-        </div>
-
-        {/* Period Selector */}
         <div>
           <label htmlFor="period" className="mr-2 text-black">Period:</label>
           <select
