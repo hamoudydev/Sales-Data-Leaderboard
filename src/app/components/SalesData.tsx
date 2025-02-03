@@ -17,7 +17,7 @@ const SalesData: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [period, setPeriod] = useState<'daily' | 'weekly' | 'monthly'>('daily'); // State for Period
-  const [team, setTeam] = useState<'all' | 'dreamVille' | 'dreamChasers'>('all'); // State for Team
+  const [team, setTeam] = useState<'all' | 'dreamChasers' | 'dreamVille'>('all'); // State for Team
 
   // Mapping for gid values based on team and period
   const gidMapping = {
@@ -26,15 +26,15 @@ const SalesData: React.FC = () => {
       weekly: '2040258721',
       monthly: '1972425694',
     },
-    dreamVille: {
-      daily: '0',
-      weekly: '2040258721', // Replace with the correct gid for Dream Ville weekly
-      monthly: '1972425694', // Replace with the correct gid for Dream Ville monthly
-    },
     dreamChasers: {
-      daily: '0',
-      weekly: '2040258721', // Replace with the correct gid for Dream Chasers weekly
-      monthly: '1972425694', // Replace with the correct gid for Dream Chasers monthly
+      daily: '928826173',
+      weekly: '1501607893', // Replace with the correct gid for Dream Chasers weekly
+      monthly: '1817368453', // Replace with the correct gid for Dream Chasers monthly
+    },
+    dreamVille: {
+      daily: '1408961369',
+      weekly: '1443693332', // Replace with the correct gid for Dream Ville weekly
+      monthly: '1045432359', // Replace with the correct gid for Dream Ville monthly
     },
   };
 
@@ -49,11 +49,11 @@ const SalesData: React.FC = () => {
         case 'all':
           baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub';
           break;
+          case 'dreamChasers':
+            baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub';
+            break;
         case 'dreamVille':
-          baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS3kVIT8fTjsg-Vh54CuKGS9_SpVlCPisie0kscyneeZj_2wxRpBSBleTYJvLfZRTWPPdFeyFyyKj4T/pub';
-          break;
-        case 'dreamChasers':
-          baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSj0HxHTy51Lw_0mEB25q8i0WJI6dhmyUJqRb--SXlTEVMudfHejyksZUwmRtfa9sybB80OkjQ4QFuv/pub';
+          baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub';
           break;
         default:
           baseUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR74nBW5M5UsaCzSj7ecVYXVaWfGENQEfyDl866XJgINqMct63qNQ68cRJOoRs70CQuk9StTpfRdgTl/pub';
@@ -177,8 +177,8 @@ const SalesData: React.FC = () => {
             className="px-4 py-2 bg-white border border-gray-300 rounded text-black"
           >
             <option value="all">All Staff</option>
-            <option value="dreamVille">Dream Ville</option>
             <option value="dreamChasers">Dream Chasers</option>
+            <option value="dreamVille">Dream Ville</option>
           </select>
         </div>
 
