@@ -37,7 +37,7 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
       },
       title: {
         display: true,
-        text: 'Sales Leaderboard',
+        text: 'Leaderboard',
       },
     },
     scales: {

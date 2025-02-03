@@ -16,7 +16,7 @@ const SalesData: React.FC = () => {
   const [salesData, setSalesData] = useState<Sale[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [period, setPeriod] = useState<'daily' | 'weekly' | 'monthly'>('daily');
+  const [period, setPeriod] = useState<'daily' | 'weekly' | 'monthly'>('daily'); // State for Period
 
   // Mapping for gid values based on period
   const gidMapping = {
@@ -56,21 +56,10 @@ const SalesData: React.FC = () => {
 
   // Function to find leaders for a given category
   const findLeaders = (category: keyof Sale) => {
-    // Parse and filter out invalid values (e.g., empty strings or non-numeric values)
-    const validSales = salesData
-      .map((sale) => {
-        const value = parseFloat(sale[category].replace('$', '').replace(',', ''));
-        return { ...sale, [category]: isNaN(value) ? 0 : value }; // Replace invalid values with 0
-      });
-
-    // Find the maximum value for the category
-    const maxValue = Math.max(...validSales.map((sale) => sale[category]));
-
-    // Find the salesperson(s) with the maximum value
-    const leaders = validSales
-      .filter((sale) => sale[category] === maxValue)
+    const maxValue = Math.max(...salesData.map((sale) => parseFloat(sale[category].replace('$', ''))));
+    const leaders = salesData
+      .filter((sale) => parseFloat(sale[category].replace('$', '')) === maxValue)
       .map((sale) => sale.Salesperson);
-
     return { maxValue, leaders };
   };
 
@@ -93,21 +82,21 @@ const SalesData: React.FC = () => {
     datasets: [
       {
         label: 'Applications',
-        data: salesData.map((sale) => parseFloat(sale.Applications.replace('$', '').replace(',', '')) || 0),
+        data: salesData.map((sale) => parseFloat(sale.Applications.replace('$', ''))),
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
       },
       {
         label: 'E-Signs',
-        data: salesData.map((sale) => parseFloat(sale.Signatures.replace('$', '').replace(',', '')) || 0),
+        data: salesData.map((sale) => parseFloat(sale.Signatures)),
         backgroundColor: 'rgba(153, 102, 255, 0.6)',
         borderColor: 'rgba(153, 102, 255, 1)',
         borderWidth: 1,
       },
       {
         label: 'Folders',
-        data: salesData.map((sale) => parseFloat(sale.Folders.replace('$', '').replace(',', '')) || 0),
+        data: salesData.map((sale) => parseFloat(sale.Folders.replace('$', ''))),
         backgroundColor: 'rgba(255, 159, 64, 0.6)',
         borderColor: 'rgba(255, 159, 64, 1)',
         borderWidth: 1,
@@ -117,10 +106,9 @@ const SalesData: React.FC = () => {
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8 text-black text-center">Sales Leaderboard</h1>
-
       {/* Leaderboard Section */}
       <div className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4 text-black text-center">Current Leaders</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Applications Leader */}
           <div className="bg-white p-4 rounded-lg shadow-md">
@@ -175,7 +163,7 @@ const SalesData: React.FC = () => {
       </div>
 
       {/* Graph Section with Reduced Height */}
-      <div className="flex justify-center h-[600px]">
+      <div className="flex justify-center h-[680px]">
         <BarChart data={chartData} />
       </div>
     </div>
