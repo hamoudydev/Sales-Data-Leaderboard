@@ -115,7 +115,7 @@ const SalesData: React.FC = () => {
         borderWidth: 1,
       },
       {
-        label: 'Signatures',
+        label: 'E-Signs',
         data: salesData.map((sale) => parseFloat(sale.Signatures)),
         backgroundColor: 'rgba(153, 102, 255, 0.6)',
         borderColor: 'rgba(153, 102, 255, 1)',
@@ -149,7 +149,7 @@ const SalesData: React.FC = () => {
 
           {/* Signatures Leader */}
           <div className="bg-white p-4 rounded-lg shadow-md">
-            <h3 className="text-lg font-bold text-black">Signatures</h3>
+            <h3 className="text-lg font-bold text-black">E-Signs</h3>
             <p className="text-black font-bold">
               {signaturesLeaders.maxValue} - {signaturesLeaders.leaders.join(', ')}
             </p>
