@@ -163,7 +163,7 @@ const SalesData: React.FC = () => {
       </div>
 
       {/* Graph Section with Reduced Height */}
-      <div className="flex justify-center h-[680px]">
+      <div className="flex justify-center h-[640px]">
         <BarChart data={chartData} />
       </div>
     </div>

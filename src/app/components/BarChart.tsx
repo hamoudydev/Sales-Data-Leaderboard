@@ -40,6 +40,13 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
         text: 'Leaderboard',
       },
     },
+    scales: {
+      y: {
+        ticks: {
+          precision: 0, // Ensure whole numbers are displayed
+        },
+      },
+    },
   };
 
   return <Bar data={data} options={options} />;

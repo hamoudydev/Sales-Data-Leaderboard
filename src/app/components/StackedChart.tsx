@@ -42,9 +42,15 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
     },
     scales: {
       x: {
+        ticks: {
+          precision: 0, // Ensure whole numbers are displayed
+        },
         stacked: true, // Enable stacking for the x-axis
       },
       y: {
+        ticks: {
+          precision: 0, // Ensure whole numbers are displayed
+        },
         stacked: true, // Enable stacking for the y-axis
       },
     },
